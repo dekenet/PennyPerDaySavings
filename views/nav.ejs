@@ -1,0 +1,17 @@
+<script>
+    function select(link) {
+        document.querySelectorAll('.nav-list a').forEach( a => { a.removeAttribute('selected') });
+        link.setAttribute('selected', true);
+        loadContent(link.getAttribute('data'));
+    }
+</script>
+<% nav.forEach( section => { %>
+<h2><%= section.title %></h2>
+    <ul class="nav-list">
+    <% section.links.forEach( (link, index) => { %>
+        <li>
+            <a data=<%= index %> href="#" onclick="select(this)" <%= s===index? 'selected': '' %>><%= link.split('-').map( w => w[0].toUpperCase()+w.slice(1)).join(' ') %></a>
+        </li>
+    <% }) %>
+    </ul>
+<% }) %>
