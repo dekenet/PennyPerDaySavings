@@ -10,8 +10,10 @@ router.get('/', function(req, res, next) {
     c: req.query.c || 0
   });
 });
-router.get('/content', function(req, res, next) {
-  res.render('section', { c: req.query.c || 0 });
+router.get('/content/*', function(req, res, next) {
+  var idx = req.params[0];
+  var path = './apps/calculators/'+calculators.links[idx]+'/index.html';
+  res.send(fs.readFileSync(path));
 });
 
 module.exports = router;

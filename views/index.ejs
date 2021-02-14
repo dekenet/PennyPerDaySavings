@@ -3,12 +3,7 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script>
-      function loadContent(c) {
-        content = document.getElementById('content').firstElementChild;
-        content.setAttribute('src', '/content?c='+c)
-      }
-    </script>
+    <script src="/javascripts/main.js"></script>
   </head>
   <body>
     <header id="header">
@@ -18,7 +13,7 @@
       <%- include('../views/nav.ejs', {nav: nav, s: c}) %>
     </nav>
     <section id="content">
-      <iframe scrolling="no" src="/content?c=<%=c%>"></iframe>
+      <%- include('../views/section.ejs', {s: c}) %>
     </section>
     <footer id="footer"></footer>
   </body>
