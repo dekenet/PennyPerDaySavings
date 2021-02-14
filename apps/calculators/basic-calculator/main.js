@@ -22,8 +22,6 @@ var BasicCalculator = function(){
                 default: return Error('Unsupported Operand.')
             }
         }
-        // this.outputs = this.inputs;
-        // document.getElementsByName('output')[0].value = this.outputs;
         _output.innerHTML = inputs.reduce((acc, curr, idx) => {
             console.log('Reduce:',acc, curr, signs[idx])
             if(!signs[idx]) return curr;
@@ -38,18 +36,6 @@ var BasicCalculator = function(){
         }
         _input.value=inputs.map( (i,idx) => (signs[idx] ? signs[idx] + ' ' : '') + i ).join(' ')
         return;
-
-        // if (i.value == this.inputs) return;
-        // var word = /d*/;
-        // var test = i.value;
-
-        // console.log(word.test(test))
-        // if (i.value) {
-        //     this.inputs = i.value;
-        //     i.value = this.inputs;
-        //     calculate();
-        // }
-        // // console.log()
     };
     return {
         calculate: this.calculate,
