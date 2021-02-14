@@ -15,5 +15,10 @@ router.get('/content/*', function(req, res, next) {
   var path = './apps/calculators/'+calculators.links[idx]+'/index.html';
   res.send(fs.readFileSync(path));
 });
+router.get('/scripts/*', function(req, res, next) {
+  var idx = req.params[0];
+  var path = './apps/calculators/'+calculators.links[idx]+'/main.js';
+  res.send(fs.readFileSync(path));
+});
 
 module.exports = router;
