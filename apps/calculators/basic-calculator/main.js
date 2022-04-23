@@ -10,7 +10,7 @@ var BasicCalculator = function(){
     var signs = [''];
     var calculate = (e) => {
         run = (n1, n2, op) => {
-            console.log('Run:', n1, n2, op)
+            // console.log('Run:', n1, n2, op)
             n1 = parseInt(n1) || 0;
             n2 = parseInt(n2) || 0;
             if(!op) return Error('Missing Operand.')
@@ -23,18 +23,19 @@ var BasicCalculator = function(){
             }
         }
         _output.innerHTML = inputs.reduce((acc, curr, idx) => {
-            console.log('Reduce:',acc, curr, signs[idx])
+            // console.log('Reduce:',acc, curr, signs[idx])
             if(!signs[idx]) return curr;
             return run(acc, curr, signs[idx]);
         },0);
     };
     var input = (key, e) => {
-        if (/\d/.test(key)) inputs[inputs.length-1] += key;
-        if (/[\+\-\*\/]/.test(key)) {
-            signs.push(key);
-            inputs.push('');
+        switch(key){
+            case 'Backspace': inputs = inputs.slice(0,-1); signs = signs.slice(0,-1); break;
+            case key.match(/\d/)?.input: inputs[inputs.length-1] += key; break;
+            case key.match(/[\+\-\*\/]/)?.input: signs.push(key) && inputs.push(''); break;
         }
-        _input.value=inputs.map( (i,idx) => (signs[idx] ? signs[idx] + ' ' : '') + i ).join(' ')
+        calculate();
+        _input.value=inputs.map( (i,idx) => (signs[idx] ? signs[idx] + ' ' : '') + i ).join(' ');
         return;
     };
     return {
